@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../services/helper';
 
 const Food = props => (
     <tr>
@@ -22,7 +23,7 @@ export default class FoodList extends Component{
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/food/')
+        axios.get(`${BASE_URL}/food/`)
             .then(response => {
                 this.setState({ foods: response.data })
             })
@@ -32,7 +33,7 @@ export default class FoodList extends Component{
     }
 
     deleteFood(id) {
-        axios.delete('http://localhost:5000/food/'+id)
+        axios.delete(`${BASE_URL}/food/`+id)
             .then(res => console.log(res.date));
             
         this.setState({
